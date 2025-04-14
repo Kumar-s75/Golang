@@ -11,11 +11,12 @@ func main() {
 	content :="This needs to go in a file-go";
    file, err:=os.Create("./mylcogofile.txt");
 
-   if err !=nil{
-     panic(err);
-   }
+//    if err !=nil{
+//      panic(err);
+//    }
 
    length,err:=io.WriteString(file,content);
+   checkNilErr(err);
    if err !=nil{
 	panic(err);
   }
@@ -27,8 +28,18 @@ func main() {
 //after you run command go main.go it a new .txt file is created and it goes around with the same name
  func readFile(filname string){
 	databyte,err:=ioutil.ReadFile(filname);
-	if err !=nil{
-		panic(err);
-	}
+	// if err !=nil{
+	// 	panic(err);
+	// }
+	checkNilErr(err);
 	fmt.Println("Text data inside the file is \n",databyte);
  }
+
+func checkNilErr(err error){
+	 if err!=nil{
+		panic (err)
+	 
+	 }
+
+}
+
